@@ -171,6 +171,14 @@
       right: 16px;
     }
 
+    .overlay-close-btn:hover {
+      color: #a6e3a1;
+    }
+
+    #play-again-btn {
+      margin-top: 8px;
+    }
+
     @media (max-width: 480px) {
       h1 {
         font-size: 1.4rem;
@@ -217,6 +225,7 @@
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
   <script>
     const buzzwords = [
       'agentic', 'AI-native', 'MCP', 'sub-agent', 'orchestration',
@@ -346,6 +355,66 @@
 
     function showOverlay() {
       overlay.classList.add('visible');
+
+      const colors = ['#b4befe', '#a6e3a1', '#fab387', '#f5c2e7'];
+      const end = Date.now() + 3000;
+
+      (function frame() {
+        confetti({
+          particleCount: 4,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 },
+          colors: colors
+        });
+        confetti({
+          particleCount: 4,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 },
+          colors: colors
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      }());
+
+      setTimeout(() => {
+        confetti({
+          particleCount: 80,
+          spread: 100,
+          startVelocity: 40,
+          origin: { y: 0.6 },
+          colors: colors
+        });
+      }, 1500);
+
+      confetti({
+        particleCount: 100,
+        spread: 160,
+        startVelocity: 50,
+        colors: colors
+      });
+    }
+      }());
+
+      setTimeout(() => {
+        confetti({
+          particleCount: 80,
+          spread: 100,
+          startVelocity: 40,
+          origin: { y: 0.6 },
+          colors: colors
+        });
+      }, 1500);
+
+      confetti({
+        particleCount: 100,
+        spread: 160,
+        startVelocity: 50,
+        colors: colors
+      });
     }
 
     function hideOverlay() {
