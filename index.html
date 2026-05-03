@@ -221,7 +221,7 @@
     const buzzwords = [
       'agentic', 'AI-native', 'MCP', 'sub-agent', 'orchestration',
       'harness', 'vibe coding', 'spicy autocomplete', 'dark factory', 'worktree',
-      'sandbox', 'CLAUDE.md', 'FREE SPACE', 'hooks', 'slash command',
+      'sandbox', 'CLAUDE.md', 'hooks', 'slash command',
       'prompt engineering', 'context window', 'RAG', 'embedding', 'fine-tune',
       'evals', 'hallucination', 'token', 'latency', 'cost'
     ];
@@ -234,22 +234,30 @@
 
     function renderGrid() {
       grid.innerHTML = '';
-      buzzwords.forEach((word, i) => {
+      let buzzIndex = 0;
+      for (let i = 0; i < 25; i++) {
         const cell = document.createElement('div');
         cell.className = 'cell';
-        cell.textContent = word;
         cell.dataset.index = i;
         cell.setAttribute('role', 'button');
         cell.setAttribute('aria-pressed', 'false');
         cell.setAttribute('tabindex', '0');
 
         if (i === 12) {
+          cell.textContent = 'FREE SPACE';
           cell.classList.add('marked', 'free-space');
           cell.setAttribute('aria-pressed', 'true');
+        } else {
+          cell.textContent = buzzwords[buzzIndex];
+          buzzIndex++;
         }
 
         grid.appendChild(cell);
-      });
+      }
+    }
+
+        grid.appendChild(cell);
+      }
     }
 
     renderGrid();
