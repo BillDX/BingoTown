@@ -23,6 +23,7 @@
       flex-direction: column;
       align-items: center;
       padding: 24px 16px;
+      overflow-x: hidden;
     }
 
     h1 {
@@ -61,6 +62,9 @@
       transition: transform 0.1s ease, border-color 0.1s ease, box-shadow 0.15s ease;
       position: relative;
       min-height: 60px;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      hyphens: auto;
     }
 
     .cell:hover {
@@ -111,6 +115,8 @@
       border-radius: 8px;
       cursor: pointer;
       transition: transform 0.1s ease, box-shadow 0.15s ease, background-color 0.1s ease;
+      min-height: 48px;
+      min-width: 48px;
     }
 
     .new-card-btn:hover {
@@ -201,11 +207,41 @@
     }
 
     @media (min-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
       .cell {
         padding: 16px 8px;
         font-size: 0.85rem;
         min-height: 72px;
       }
+    }
+
+    @media (min-width: 1024px) {
+      .container {
+        max-width: 650px;
+      }
+
+      .cell {
+        padding: 20px 12px;
+        font-size: 0.95rem;
+        min-height: 80px;
+      }
+
+      h1 {
+        font-size: 2.25rem;
+      }
+
+      .new-card-btn {
+        padding: 16px 28px;
+        font-size: 1.05rem;
+      }
+    }
+
+    .cell:focus-visible {
+      outline: 2px solid #b4befe;
+      outline-offset: 2px;
     }
   </style>
 </head>
@@ -378,25 +414,6 @@
         if (Date.now() < end) {
           requestAnimationFrame(frame);
         }
-      }());
-
-      setTimeout(() => {
-        confetti({
-          particleCount: 80,
-          spread: 100,
-          startVelocity: 40,
-          origin: { y: 0.6 },
-          colors: colors
-        });
-      }, 1500);
-
-      confetti({
-        particleCount: 100,
-        spread: 160,
-        startVelocity: 50,
-        colors: colors
-      });
-    }
       }());
 
       setTimeout(() => {
